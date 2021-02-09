@@ -30,7 +30,7 @@ async function build(token, email) {
     let codeVersions = pkg.codeVersions;
 
     let repo_folder = path.resolve(path.join("..", "..", "Pico-Go"));
-    let git = new Git("https://github.com/cpwood/Pico-Go.git", "cpwood", token, repo_folder, "Chris Wood", email);
+    let git = new Git("https://github.com/naohiro2g/Pico-Go.git", "naohiro2g", token, repo_folder, "Naohiro Tsuji Bot", email);
 
     await git.Clone();
     await git.Checkout("develop");
@@ -41,7 +41,7 @@ async function build(token, email) {
 
     let minModules = _.minBy(codeVersions, x => x.modules).modules;
     let maxModules = _.maxBy(codeVersions, x => x.modules).modules;
-    
+
     let platformResponsibilities = _.find(responsibilities, x => x.platform == platform);
     let modulesVersion = CodeVersion.GetProcessingVersions(codeVersions);
     let rebuild = new Rebuild();
@@ -63,7 +63,7 @@ async function build(token, email) {
 
             if (!nm.Exists(x)) {
                 // NB: following line will fail when run in debug.
-                let built_folder = await rebuild.RebuildPlatform(x);     
+                let built_folder = await rebuild.RebuildPlatform(x);
                 // For debugging only
                 //let built_folder = path.resolve(path.join("node_modules", "@serialport", "bindings", "bin", `${x.platform}-${x.arch}-${x.modules}`));
 
